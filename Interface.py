@@ -8,6 +8,9 @@
 
 from PyQt5 import QtCore, QtGui, QtWidgets
 
+from game import *
+
+
 class Ui_Dialog(object):
     def setupUi(self, Dialog):
         Dialog.setObjectName("Dialog")
@@ -20,6 +23,7 @@ class Ui_Dialog(object):
         font.setWeight(75)
         self.B00.setFont(font)
         self.B00.setObjectName("B00")
+        self.B00.setText("")
         self.B01 = QtWidgets.QPushButton(Dialog)
         self.B01.setGeometry(QtCore.QRect(290, 100, 51, 51))
         font = QtGui.QFont()
@@ -109,8 +113,8 @@ class Ui_Dialog(object):
         self.Mensagem = QtWidgets.QLabel(Dialog)
         self.Mensagem.setGeometry(QtCore.QRect(210, 310, 261, 31))
         self.Mensagem.setObjectName("Mensagem")
-       
-        #Events
+
+        # Events
         self.B00.clicked.connect(self.ButtonB00)
         self.B01.clicked.connect(self.ButtonB01)
         self.B02.clicked.connect(self.ButtonB02)
@@ -120,8 +124,7 @@ class Ui_Dialog(object):
         self.B20.clicked.connect(self.ButtonB20)
         self.B21.clicked.connect(self.ButtonB21)
         self.B22.clicked.connect(self.ButtonB22)
-        #Events
-
+        # Events
 
         self.retranslateUi(Dialog)
         QtCore.QMetaObject.connectSlotsByName(Dialog)
@@ -129,40 +132,102 @@ class Ui_Dialog(object):
     def retranslateUi(self, Dialog):
         _translate = QtCore.QCoreApplication.translate
         Dialog.setWindowTitle(_translate("Dialog", "Dialog"))
-        self.B00.setText(_translate("Dialog", "X"))
+        self.B00.setText(_translate("Dialog", ""))
         self.ButtonStart.setText(_translate("Dialog", "Começar Primeiro"))
         self.ButtonSecond.setText(_translate("Dialog", "Começar Depois"))
         self.Title.setText(_translate("Dialog", "JOGO DA VELHA"))
         self.Mensagem.setText(_translate("Dialog", "Mensagem"))
-    
-    #Functions
+
+    # Functions
     def ButtonB00(self):
         self.B00.setText('O')
+        table_before = self.takeBoard()
+        game = Game()
+        weight, col, lin = game.my_time(table_before)
+        self.makeBoard(col, lin)
+        print(weight)
+        print(col)
+        print(lin)
 
     def ButtonB01(self):
         self.B01.setText('O')
+        table_before = self.takeBoard()
+        game = Game()
+        weight, col, lin = game.my_time(table_before)
+        self.makeBoard(col, lin)
+        print(weight)
+        print(col)
+        print(lin)
 
     def ButtonB02(self):
         self.B02.setText('O')
+        table_before = self.takeBoard()
+        game = Game()
+        weight, col, lin = game.my_time(table_before)
+        self.makeBoard(col, lin)
+        print(weight)
+        print(col)
+        print(lin)
 
     def ButtonB10(self):
         self.B10.setText('O')
+        table_before = self.takeBoard()
+        game = Game()
+        weight, col, lin = game.my_time(table_before)
+        self.makeBoard(col, lin)
+        print(weight)
+        print(col)
+        print(lin)
 
     def ButtonB11(self):
         self.B11.setText('O')
+        table_before = self.takeBoard()
+        game = Game()
+        weight, col, lin = game.my_time(table_before)
+        self.makeBoard(col, lin)
+        print(weight)
+        print(col)
+        print(lin)
 
     def ButtonB12(self):
         self.B12.setText('O')
+        table_before = self.takeBoard()
+        game = Game()
+        weight, col, lin = game.my_time(table_before)
+        self.makeBoard(col, lin)
+        print(weight)
+        print(col)
+        print(lin)
 
     def ButtonB20(self):
         self.B20.setText('O')
+        table_before = self.takeBoard()
+        game = Game()
+        weight, col, lin = game.my_time(table_before)
+        self.makeBoard(col, lin)
+        print(weight)
+        print(col)
+        print(lin)
 
     def ButtonB21(self):
         self.B21.setText('O')
+        table_before = self.takeBoard()
+        game = Game()
+        weight, col, lin = game.my_time(table_before)
+        self.makeBoard(col, lin)
+        print(weight)
+        print(col)
+        print(lin)
 
     def ButtonB22(self):
         self.B22.setText('O')
-        self.takeBoard()
+        table_before = self.takeBoard()
+        game = Game()
+        weight, col, lin = game.my_time(table_before)
+        self.makeBoard(col, lin)
+        print(weight)
+        print(col)
+        print(lin)
 
     def takeBoard(self):
         B00 = self.B00.text()
@@ -176,12 +241,39 @@ class Ui_Dialog(object):
         B22 = self.B22.text()
 
         board = [
-                    [B00, B01, B02],
-                    [B10, B11, B12],
-                    [B20, B21, B22]
-                ]
+            [B00, B01, B02],
+            [B10, B11, B12],
+            [B20, B21, B22]
+        ]
         return board
-    #Functions
+
+    def makeBoard(self, col, lin):
+        if (lin == 0):
+            if(col == 0):
+                self.B00.setText("X")
+            elif(col == 1):
+                self.B01.setText("X")
+            elif(col == 2):
+                self.B02.setText("X")
+        elif (lin == 1):
+            if(col == 0):
+                self.B10.setText("X")
+            elif(col == 1):
+                self.B11.setText("X")
+            elif(col == 2):
+                self.B12.setText("X")
+        elif (lin == 2):
+            if(col == 0):
+                self.B20.setText("X")
+            elif(col == 1):
+                self.B21.setText("X")
+            elif(col == 2):
+                self.B22.setText("X")
+        else:
+            print('Errow!')
+
+    # Functions end
+
 
 if __name__ == "__main__":
     import sys
@@ -191,4 +283,3 @@ if __name__ == "__main__":
     ui.setupUi(Dialog)
     Dialog.show()
     sys.exit(app.exec_())
-
