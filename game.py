@@ -12,8 +12,8 @@ class Game:
             line, Colm = board_local.where_i_win()
             print('primeiro')
             return [line, Colm]
-        elif (type(board_local.where_they_win()) == list):
-            line, Colm = board_local.where_they_win()
+        elif (type(board_local.where_i_win()) == list):
+            line, Colm = board_local.where_i_win()
             print('segundo')
             return [line, Colm]
         else:
