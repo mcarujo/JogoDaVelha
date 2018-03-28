@@ -1,32 +1,26 @@
-# Classe Board para manipulações no tabuleiro do jogo da velha
+from copy import copy
 from var_dump import var_dump
-import tree
 
 
 class Board:
     tabela = [[None, None, None], [None, None, None], [None, None, None]]
     size = 3
 
-    def __init__(table):
-        self.setTable(table)
+    def __init__(self, table):
+        self.tabela = table
 
-    def setTable(self, board):
-        self.tabela = board
+    def setTable(self, table):
+        self.tabela = table
 
     def getTable(self):
-        board = [
-            [self.tabela[0][0], self.tabela[0][1], self.tabela[0][2]],
-            [self.tabela[1][0], self.tabela[1][1], self.tabela[1][2]],
-            [self.tabela[2][0], self.tabela[2][1], self.tabela[2][2]]
-        ]
-        return board
+        return self.tabela
 
     def clean(self):
         for i in range(self.size):
             for j in range(self.size):
                 self.tabela[i][j] = ""
 
-    def print(self):
+    def printer(self):
         for i in range(self.size):
             print(self.tabela[i][0] + " | " + self.tabela[i][1] + " | " +
                   self.tabela[i][2])
@@ -37,6 +31,7 @@ class Board:
     def how_many_times_i_can_lose(self):
         count = 0
         auxTable = self.getTable()
+        var_dump(auxTable)
         for i in range(self.size):
             for j in range(self.size):
                 if auxTable[i][j] == "X":
@@ -63,39 +58,8 @@ class Board:
             count = count + 1
         return count
 
-    def where_i_should(self, depth):
-
- 
-        # for k in range(depth):
-        #     count = 1
-        # for i in range(self.size):
-        #     for j in range(self.size):
-        #         if (val.tabela[i][j] == ""):
-        #             if (odd_or_even(k)):
-        #                 val.tabela[i][j] = "0"
-        #             else:
-        #                 val.tabela[i][j] = "X"
-        #             tree.insert(count,val)
-        #             val.tabela[i][j] == ""
-        #             count = count + 1
-        # print('Arvore do Min Max')
-        # pprint(tree)
-        #     for val in array:
-        # print(val)
-        # for i in range(self.size):
-        #     for j in range(self.size):
-        #         if (auxTable.tabela[i][j] == ""):
-        #             auxTable.tabela[i][j] = "X"
-        #             aux = auxTable.where_i_lose()
-        #             if (aux < Weight):
-        #                 Weight = aux
-        #                 Line = j
-        #                 Colm = i
-        #             auxTable.tabela[i][j] = ""
-        #             auxTable.print()
-
-        return [None, None]
-        # return [Line, Colm]
+    # def where_i_should(self, depth):
+    #     return [None, None]
 
     def where_i_win(self):
         auxTable = self.getTable()
@@ -239,3 +203,7 @@ def odd_or_even(number):
         return True
     else:
         return False
+
+# a = [["O", "", ""], ["", "", ""], ["", "", ""]]
+# auxBoard = Board(a)
+# auxBoard.where_i_should(1)

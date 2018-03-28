@@ -8,7 +8,7 @@
 
 from PyQt5 import QtCore, QtGui, QtWidgets
 
-from game import *
+from game import Gane
 
 
 class Ui_Dialog(object):
