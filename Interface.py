@@ -236,6 +236,7 @@ class Ui_Dialog(object):
             [B10, B11, B12],
             [B20, B21, B22]
         ]
+        
         return board
 
     def makeBoard(self, col, lin):
