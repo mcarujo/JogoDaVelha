@@ -1,4 +1,4 @@
-from copy import copy
+import copy
 from var_dump import var_dump
 
 
@@ -30,8 +30,7 @@ class Board:
 
     def how_many_times_i_can_lose(self):
         count = 0
-        auxTable = self.getTable()
-        var_dump(auxTable)
+        auxTable = copy.deepcopy(self.tabela[:])
         for i in range(self.size):
             for j in range(self.size):
                 if auxTable[i][j] == "X":
@@ -57,12 +56,8 @@ class Board:
                 auxTable[2][0]) == -3:
             count = count + 1
         return count
-
-    # def where_i_should(self, depth):
-    #     return [None, None]
-
     def where_i_win(self):
-        auxTable = self.getTable()
+        auxTable = copy.deepcopy(self.tabela[:])
         for i in range(self.size):
             for j in range(self.size):
                 if auxTable[i][j] == "X":
@@ -110,7 +105,7 @@ class Board:
         return False
 
     def where_i_lose(self):
-        auxTable = self.getTable()
+        auxTable = copy.deepcopy(self.tabela[:])
         for i in range(self.size):
             for j in range(self.size):
                 if auxTable[i][j] == "O":
