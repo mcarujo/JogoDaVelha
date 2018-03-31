@@ -191,14 +191,8 @@ class Board:
         return 0
 
 # returned false means odd,but returned true means even
-
-
 def odd_or_even(number):
     if (number % 2 == 0):
         return True
     else:
         return False
-
-# a = [["O", "", ""], ["", "", ""], ["", "", ""]]
-# auxBoard = Board(a)
-# auxBoard.where_i_should(1)

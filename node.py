@@ -34,10 +34,3 @@ class Node:
                     auxList.append(auxNode)
                     auxTable[i][j] = None
         self.nextNode = auxList
-
-
-a = [["X", "O", None], [None, None, None], [None, None, None]]
-teste = Node(a, 1, 1)
-# print(teste.node.tabela[:])
-teste.make_next_node(True)
-var_dump(teste)
