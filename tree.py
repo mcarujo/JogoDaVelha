@@ -15,10 +15,8 @@ class Tree:
         Colm = None
         Weight = 100
         iterator = []
+        iterator2 = []
         if(self.depth >= 1):
-            for x in range(len(self.root.nextNode)):
-                self.root.nextNode[x].make_next_node(False)
-            #Wich one is the better?
             for x in range(len(self.root.nextNode)):
                 if (Weight > self.root.nextNode[x].weight):
                     Weight = self.root.nextNode[x].weight
@@ -28,10 +26,25 @@ class Tree:
                     iterator.append(x)
 
             for x in range(len(iterator)):
+                self.root.nextNode[iterator[x]].make_next_node(False)
+                Weight = 100
+                for y in range(len(self.root.nextNode[iterator[x]].nextNode)):
+                    if (Weight > self.root.nextNode[iterator[x]].nextNode[y].weight):
+                        Weight = self.root.nextNode[iterator[x]].nextNode[y].weight
+                for y in range(len(self.root.nextNode[iterator[x]].nextNode)):
+                    if (Weight == self.root.nextNode[iterator[x]].nextNode[y].weight):      
+                        iterator2= [ iterator[x], Weight ]               
+
+
+        var_dump(iterator2)  
+                #var_dump(self.root.nextNode[iterator[x]])
 
 
 
-        return iterator
+
+
+
+        return iterator2
 
 
 a = [["O", None, None], [None, None, None], [None, None, None]]
