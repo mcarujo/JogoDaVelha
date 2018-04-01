@@ -31,4 +31,7 @@ class Game:
                 if (tabela[x][y] == ""):
                     tabela[x][y] = None
         return tabela
+    #def alguem_ganhou(self):
+
+
                     

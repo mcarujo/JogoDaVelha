@@ -146,7 +146,7 @@ class Ui_Dialog(object):
         self.Play()
 
     def ButtonB01(self):
-        self.makeBoard(0,1,"O"))
+        self.makeBoard(0,1,"O")
         self.Play()
 
     def ButtonB02(self):
@@ -204,7 +204,7 @@ class Ui_Dialog(object):
         
         return board
 
-    def makeBoard(self, col, lin,flag):
+    def makeBoard(self, lin, col,flag):
         if (lin == 0):
             if(col == 0):
                 self.B00.setText(flag)
