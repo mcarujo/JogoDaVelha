@@ -7,14 +7,11 @@
 # WARNING! All changes made in this file will be lost!
 
 from PyQt5 import QtCore, QtGui, QtWidgets
-
 from game import Game
-
-
 class Ui_Dialog(object):
     def setupUi(self, Dialog):
         Dialog.setObjectName("Dialog")
-        Dialog.resize(600, 500)
+        Dialog.resize(657, 516)
         self.B00 = QtWidgets.QPushButton(Dialog)
         self.B00.setGeometry(QtCore.QRect(230, 100, 51, 51))
         font = QtGui.QFont()
@@ -22,8 +19,8 @@ class Ui_Dialog(object):
         font.setBold(True)
         font.setWeight(75)
         self.B00.setFont(font)
-        self.B00.setObjectName("B00")
         self.B00.setText("")
+        self.B00.setObjectName("B00")
         self.B01 = QtWidgets.QPushButton(Dialog)
         self.B01.setGeometry(QtCore.QRect(290, 100, 51, 51))
         font = QtGui.QFont()
@@ -111,9 +108,15 @@ class Ui_Dialog(object):
         self.Title.setFont(font)
         self.Title.setObjectName("Title")
         self.Mensagem = QtWidgets.QLabel(Dialog)
-        self.Mensagem.setGeometry(QtCore.QRect(210, 310, 261, 31))
+        self.Mensagem.setGeometry(QtCore.QRect(180, 290, 261, 31))
         self.Mensagem.setObjectName("Mensagem")
-
+        self.spinBox = QtWidgets.QSpinBox(Dialog)
+        self.spinBox.setGeometry(QtCore.QRect(52, 390, 56, 24))
+        self.spinBox.setMaximum(3)
+        self.spinBox.setObjectName("spinBox")
+        self.label = QtWidgets.QLabel(Dialog)
+        self.label.setGeometry(QtCore.QRect(40, 370, 81, 20))
+        self.label.setObjectName("label")
         # Events
         self.B00.clicked.connect(self.ButtonB00)
         self.B01.clicked.connect(self.ButtonB01)
@@ -125,100 +128,62 @@ class Ui_Dialog(object):
         self.B21.clicked.connect(self.ButtonB21)
         self.B22.clicked.connect(self.ButtonB22)
         # Events
-
         self.retranslateUi(Dialog)
         QtCore.QMetaObject.connectSlotsByName(Dialog)
 
     def retranslateUi(self, Dialog):
         _translate = QtCore.QCoreApplication.translate
         Dialog.setWindowTitle(_translate("Dialog", "Dialog"))
-        self.B00.setText(_translate("Dialog", ""))
         self.ButtonStart.setText(_translate("Dialog", "Começar Primeiro"))
         self.ButtonSecond.setText(_translate("Dialog", "Começar Depois"))
         self.Title.setText(_translate("Dialog", "JOGO DA VELHA"))
         self.Mensagem.setText(_translate("Dialog", "Mensagem"))
+        self.label.setText(_translate("Dialog", "Profundidade"))
 
     # Functions
     def ButtonB00(self):
-        self.B00.setText('O')
-        table_before = self.takeBoard()
-        game = Game()
-        col, lin = game.my_time(table_before)
-        self.makeBoard(col, lin)
-        print(col)
-        print(lin)
+        self.makeBoard(0,0,"O")
+        self.Play()
 
     def ButtonB01(self):
-        self.B01.setText('O')
-        table_before = self.takeBoard()
-        game = Game()
-        col, lin = game.my_time(table_before)
-        self.makeBoard(col, lin)
-        print(col)
-        print(lin)
+        self.makeBoard(0,1,"O"))
+        self.Play()
 
     def ButtonB02(self):
-        self.B02.setText('O')
-        table_before = self.takeBoard()
-        game = Game()
-        col, lin = game.my_time(table_before)
-        self.makeBoard(col, lin)
-        print(col)
-        print(lin)
+        self.makeBoard(0,2,"O")
+        self.Play()
 
     def ButtonB10(self):
-        self.B10.setText('O')
-        table_before = self.takeBoard()
-        game = Game()
-        col, lin = game.my_time(table_before)
-        self.makeBoard(col, lin)
-        print(col)
-        print(lin)
+        self.makeBoard(1,0,"O")
+        self.Play()
 
     def ButtonB11(self):
-        self.B11.setText('O')
-        table_before = self.takeBoard()
-        game = Game()
-        col, lin = game.my_time(table_before)
-        self.makeBoard(col, lin)
-        print(col)
-        print(lin)
+        self.makeBoard(1,1,"O")
+        self.Play()
 
     def ButtonB12(self):
-        self.B12.setText('O')
-        table_before = self.takeBoard()
-        game = Game()
-        col, lin = game.my_time(table_before)
-        self.makeBoard(col, lin)
-        print(col)
-        print(lin)
+        self.makeBoard(1,2,"O")
+        self.Play()
 
     def ButtonB20(self):
-        self.B20.setText('O')
-        table_before = self.takeBoard()
-        game = Game()
-        col, lin = game.my_time(table_before)
-        self.makeBoard(col, lin)
-        print(col)
-        print(lin)
+        self.makeBoard(2,0,"O")
+        self.Play()
 
     def ButtonB21(self):
-        self.B21.setText('O')
-        table_before = self.takeBoard()
-        game = Game()
-        col, lin = game.my_time(table_before)
-        self.makeBoard(col, lin)
-        print(col)
-        print(lin)
+        self.makeBoard(2,1,"O")
+        self.Play()
 
     def ButtonB22(self):
-        self.B22.setText('O')
+        self.makeBoard(2,2,"O")
+        self.Play()
+
+    def Play(self):
         table_before = self.takeBoard()
         game = Game()
         col, lin = game.my_time(table_before)
-        self.makeBoard(col, lin)
-        print(col)
-        print(lin)
+        self.makeBoard(col, lin, "X")
+
+
 
     def takeBoard(self):
         B00 = self.B00.text()
@@ -239,32 +204,35 @@ class Ui_Dialog(object):
         
         return board
 
-    def makeBoard(self, col, lin):
+    def makeBoard(self, col, lin,flag):
         if (lin == 0):
             if(col == 0):
-                self.B00.setText("X")
+                self.B00.setText(flag)
             elif(col == 1):
-                self.B01.setText("X")
+                self.B01.setText(flag)
             elif(col == 2):
-                self.B02.setText("X")
+                self.B02.setText(flag)
         elif (lin == 1):
             if(col == 0):
-                self.B10.setText("X")
+                self.B10.setText(flag)
             elif(col == 1):
-                self.B11.setText("X")
+                self.B11.setText(flag)
             elif(col == 2):
-                self.B12.setText("X")
+                self.B12.setText(flag)
         elif (lin == 2):
             if(col == 0):
-                self.B20.setText("X")
+                self.B20.setText(flag)
             elif(col == 1):
-                self.B21.setText("X")
+                self.B21.setText(flag)
             elif(col == 2):
-                self.B22.setText("X")
+                self.B22.setText(flag)
         else:
             print('Errow!')
 
     # Functions end
+
+
+
 
 
 if __name__ == "__main__":
@@ -275,3 +243,4 @@ if __name__ == "__main__":
     ui.setupUi(Dialog)
     Dialog.show()
     sys.exit(app.exec_())
+

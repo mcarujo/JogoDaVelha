@@ -30,7 +30,7 @@
     </font>
    </property>
    <property name="text">
-    <string>X</string>
+    <string/>
    </property>
   </widget>
   <widget class="QPushButton" name="B01">
@@ -242,14 +242,40 @@
   <widget class="QLabel" name="Mensagem">
    <property name="geometry">
     <rect>
-     <x>210</x>
-     <y>310</y>
+     <x>180</x>
+     <y>290</y>
      <width>261</width>
      <height>31</height>
     </rect>
    </property>
    <property name="text">
     <string>Mensagem</string>
+   </property>
+  </widget>
+  <widget class="QSpinBox" name="spinBox">
+   <property name="geometry">
+    <rect>
+     <x>52</x>
+     <y>390</y>
+     <width>56</width>
+     <height>24</height>
+    </rect>
+   </property>
+   <property name="maximum">
+    <number>3</number>
+   </property>
+  </widget>
+  <widget class="QLabel" name="label">
+   <property name="geometry">
+    <rect>
+     <x>40</x>
+     <y>370</y>
+     <width>81</width>
+     <height>20</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>Profundidade</string>
    </property>
   </widget>
  </widget>
