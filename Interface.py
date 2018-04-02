@@ -8,6 +8,7 @@
 
 from PyQt5 import QtCore, QtGui, QtWidgets
 from game import Game
+import time
 class Ui_Dialog(object):
     def setupUi(self, Dialog):
         Dialog.setObjectName("Dialog")
@@ -180,9 +181,25 @@ class Ui_Dialog(object):
     def Play(self):
         table_before = self.takeBoard()
         game = Game()
-        col, lin = game.my_time(table_before)
-        self.makeBoard(col, lin, "X")
-
+        flag, msg = game.alguem_ganhou(table_before)
+        if(flag):
+            print(flag)
+            self.Mensagem.setText(msg)
+            #time.sleep(2)
+            self.reset()
+        else:
+            self.Mensagem.setText("Minha Vez")
+            line, colm = game.my_time(table_before)
+            self.makeBoard(line, colm, "X")
+            table_before = self.takeBoard()
+            flag, msg = game.alguem_ganhou(table_before)
+            if(flag):
+                print(flag)
+                self.Mensagem.setText(msg)
+                #time.sleep(1)
+                self.reset()
+            else:
+                self.Mensagem.setText("Sua Vez")
 
 
     def takeBoard(self):
@@ -203,6 +220,19 @@ class Ui_Dialog(object):
         ]
         
         return board
+    def reset(self):
+        self.makeBoard(0,0,"")
+        self.makeBoard(0,1,"")
+        self.makeBoard(0,2,"")
+        self.makeBoard(1,0,"")
+        self.makeBoard(1,1,"")
+        self.makeBoard(1,2,"")
+        self.makeBoard(2,0,"")
+        self.makeBoard(2,1,"")
+        self.makeBoard(2,2,"")
+
+ #   def cpu_start(self):
+        #kkkkk
 
     def makeBoard(self, lin, col,flag):
         if (lin == 0):
@@ -230,10 +260,6 @@ class Ui_Dialog(object):
             print('Errow!')
 
     # Functions end
-
-
-
-
 
 if __name__ == "__main__":
     import sys

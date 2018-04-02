@@ -31,6 +31,7 @@ class Board:
     def how_many_times_i_can_lose(self):
         count = 0
         auxTable = copy.deepcopy(self.tabela[:])
+        auxTable2 = copy.deepcopy(self.tabela[:])
         for i in range(self.size):
             for j in range(self.size):
                 if auxTable[i][j] == "X":
@@ -55,7 +56,35 @@ class Board:
         if (auxTable[0][2] + auxTable[1][1] +
                 auxTable[2][0]) == -3:
             count = count + 1
-        return count
+
+        count2 = 0;
+
+        for i in range(self.size):
+            for j in range(self.size):
+                if auxTable2[i][j] == "O":
+                    auxTable2[i][j] = 1
+                else:
+                    auxTable2[i][j] = -1
+
+        for i in range(self.size):
+            if (auxTable2[i][0] + auxTable2[i][1] +
+                    auxTable2[i][2]) == -3:
+                count2 = count2 + 1
+
+        for i in range(self.size):
+            if (auxTable2[0][i] + auxTable2[1][i] +
+                    auxTable2[2][i]) == -3:
+                count2 = count2 + 1
+
+        if (auxTable2[0][0] + auxTable2[1][1] +
+                auxTable2[2][2]) == -3:
+            count2 = count2 + 1
+
+        if (auxTable2[0][2] + auxTable2[1][1] +
+                auxTable2[2][0]) == -3:
+            count2 = count2 + 1
+        
+        return count2-count
     def where_i_win(self):
         auxTable = copy.deepcopy(self.tabela[:])
         for i in range(self.size):
@@ -153,7 +182,7 @@ class Board:
         return False
 
     def who_won(self):
-        auxTable = self.tabela
+        auxTable = copy.deepcopy(self.tabela)
         for i in range(self.size):
             for j in range(self.size):
                 if auxTable[i][j] == "O":

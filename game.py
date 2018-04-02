@@ -10,19 +10,18 @@ class Game:
 
         if(type(board_local.where_i_win()) == list):
             line, colm = board_local.where_i_win()
-            print('primeiro')
-            return [colm, line]
+            print('Primeiro Caso')
+            return [line, colm]
         elif(type(board_local.where_i_lose()) == list):
             line, colm = board_local.where_i_lose()
-            print('segundo')
-            return [colm, line]
-        elif(tabela[1][1] == None):
-            return [1, 1]
+            print('Segundo Caso')
+            return [line, colm]
         else:
+            print('Terceiro Caso')
             auxTree = Tree(tabela,0)
             auxTree.build_min_max_with_depth()
             line, colm = auxTree.wich_one_is_the_best()
-            return [colm, line]
+            return [line, colm]
 
     def formatt_talble(self,table):
         tabela = table
@@ -31,7 +30,14 @@ class Game:
                 if (tabela[x][y] == ""):
                     tabela[x][y] = None
         return tabela
-    #def alguem_ganhou(self):
 
-
+    def alguem_ganhou(self,table):
+        board_local = Board(table)
+        retorno = board_local.who_won()
+        if(retorno == 3 ):
+            return [True, "Usuário Ganhou"]
+        elif(retorno == -3 ):
+            return [True, "CPU Ganhou"]
+        else:
+            return [False, "Ninguem Ganhou"]      
                     
