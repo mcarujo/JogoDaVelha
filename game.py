@@ -32,7 +32,12 @@ class Game:
         return tabela
 
     def alguem_ganhou(self,table):
+        tabela = self.formatt_talble(table)
         board_local = Board(table)
+        
+        retorno = board_local.deu_velha()
+        if retorno:
+            return [True, "Deu Velha"]
         retorno = board_local.who_won()
         if(retorno == 3 ):
             return [True, "Usuário Ganhou"]

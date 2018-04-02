@@ -10,6 +10,7 @@ from PyQt5 import QtCore, QtGui, QtWidgets
 from game import Game
 import time
 class Ui_Dialog(object):
+    play_mark = True
     def setupUi(self, Dialog):
         Dialog.setObjectName("Dialog")
         Dialog.resize(657, 516)
@@ -128,6 +129,8 @@ class Ui_Dialog(object):
         self.B20.clicked.connect(self.ButtonB20)
         self.B21.clicked.connect(self.ButtonB21)
         self.B22.clicked.connect(self.ButtonB22)
+        self.ButtonStart.clicked.connect(self.reiniciar)
+        self.ButtonSecond.clicked.connect(self.Play)
         # Events
         self.retranslateUi(Dialog)
         QtCore.QMetaObject.connectSlotsByName(Dialog)
@@ -135,58 +138,70 @@ class Ui_Dialog(object):
     def retranslateUi(self, Dialog):
         _translate = QtCore.QCoreApplication.translate
         Dialog.setWindowTitle(_translate("Dialog", "Dialog"))
-        self.ButtonStart.setText(_translate("Dialog", "Começar Primeiro"))
+        self.ButtonStart.setText(_translate("Dialog", "Reiniciar"))
         self.ButtonSecond.setText(_translate("Dialog", "Começar Depois"))
         self.Title.setText(_translate("Dialog", "JOGO DA VELHA"))
-        self.Mensagem.setText(_translate("Dialog", "Mensagem"))
+        self.Mensagem.setText(_translate("Dialog", "Vamos Jogar,se você quiser começar marque sua posição"))
         self.label.setText(_translate("Dialog", "Profundidade"))
 
     # Functions
+    def reiniciar(self):
+        self.reset()
+        self.Mensagem.setText('Vamos Jogar Denovo, se você quiser começar marque sua posição.')
+        self.play_mark = True
+
     def ButtonB00(self):
-        self.makeBoard(0,0,"O")
-        self.Play()
+        if self.play_mark == True:
+            self.makeBoard(0,0,"O")
+            self.Play()
 
     def ButtonB01(self):
-        self.makeBoard(0,1,"O")
-        self.Play()
+        if self.play_mark == True:
+            self.makeBoard(0,1,"O")
+            self.Play()
 
     def ButtonB02(self):
-        self.makeBoard(0,2,"O")
-        self.Play()
+        if self.play_mark == True:
+            self.makeBoard(0,2,"O")
+            self.Play()
 
     def ButtonB10(self):
-        self.makeBoard(1,0,"O")
-        self.Play()
+        if self.play_mark == True:
+            self.makeBoard(1,0,"O")
+            self.Play()
 
     def ButtonB11(self):
-        self.makeBoard(1,1,"O")
-        self.Play()
+        if self.play_mark == True:
+            self.makeBoard(1,1,"O")
+            self.Play()
 
     def ButtonB12(self):
-        self.makeBoard(1,2,"O")
-        self.Play()
+        if self.play_mark == True:
+            self.makeBoard(1,2,"O")
+            self.Play()
 
     def ButtonB20(self):
-        self.makeBoard(2,0,"O")
-        self.Play()
+        if self.play_mark == True:
+            self.makeBoard(2,0,"O")
+            self.Play()
 
     def ButtonB21(self):
-        self.makeBoard(2,1,"O")
-        self.Play()
+        if self.play_mark == True:
+            self.makeBoard(2,1,"O")
+            self.Play()
 
     def ButtonB22(self):
-        self.makeBoard(2,2,"O")
-        self.Play()
+        if self.play_mark == True:
+            self.makeBoard(2,2,"O")
+            self.Play()
 
     def Play(self):
         table_before = self.takeBoard()
         game = Game()
         flag, msg = game.alguem_ganhou(table_before)
         if(flag):
-            print(flag)
             self.Mensagem.setText(msg)
-            #time.sleep(2)
-            self.reset()
+            self.play_mark = False
         else:
             self.Mensagem.setText("Minha Vez")
             line, colm = game.my_time(table_before)
@@ -194,13 +209,10 @@ class Ui_Dialog(object):
             table_before = self.takeBoard()
             flag, msg = game.alguem_ganhou(table_before)
             if(flag):
-                print(flag)
                 self.Mensagem.setText(msg)
-                #time.sleep(1)
-                self.reset()
+                self.play_mark = False
             else:
                 self.Mensagem.setText("Sua Vez")
-
 
     def takeBoard(self):
         B00 = self.B00.text()

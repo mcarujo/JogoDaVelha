@@ -216,8 +216,16 @@ class Board:
             return 3
         elif (auxTable[0][2] + auxTable[1][1] + auxTable[2][0]) == -3:
             return -3
-
+        
         return 0
+    def deu_velha(self):
+        auxTable = copy.deepcopy(self.tabela)
+        for i in range(self.size):
+            for j in range(self.size):
+                if auxTable[i][j] == None:
+                    return False
+        return True
+
 
 # returned false means odd,but returned true means even
 def odd_or_even(number):
