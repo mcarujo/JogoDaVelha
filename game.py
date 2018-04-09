@@ -4,20 +4,20 @@ from tree import *
 
 
 class Game:
-    def my_time(self, table):
+    def my_time(self, table, level):
         board_local = Board(table)
         tabela = self.formatt_talble(table)
 
-        if(type(board_local.where_i_win()) == list):
+        if(type(board_local.where_i_win()) == list and int(level) >= 1 ):
             line, colm = board_local.where_i_win()
-            print('Primeiro Caso')
             return [line, colm]
-        elif(type(board_local.where_i_lose()) == list):
+        elif(type(board_local.where_i_lose()) == list and int(level) >= 2):
             line, colm = board_local.where_i_lose()
-            print('Segundo Caso')
+            return [line, colm]
+        elif(type(board_local.jogada_1()) == list and int(level) >= 3):
+            line, colm = board_local.jogada_1()
             return [line, colm]
         else:
-            print('Terceiro Caso')
             auxTree = Tree(tabela,0)
             auxTree.build_min_max_with_depth()
             line, colm = auxTree.wich_one_is_the_best()

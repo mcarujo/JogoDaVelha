@@ -102,7 +102,7 @@ class Ui_Dialog(object):
         self.ButtonSecond.setGeometry(QtCore.QRect(360, 380, 141, 41))
         self.ButtonSecond.setObjectName("ButtonSecond")
         self.Title = QtWidgets.QLabel(Dialog)
-        self.Title.setGeometry(QtCore.QRect(210, 40, 211, 41))
+        self.Title.setGeometry(QtCore.QRect(210, 40, 245, 41))
         font = QtGui.QFont()
         font.setPointSize(22)
         font.setBold(True)
@@ -110,14 +110,14 @@ class Ui_Dialog(object):
         self.Title.setFont(font)
         self.Title.setObjectName("Title")
         self.Mensagem = QtWidgets.QLabel(Dialog)
-        self.Mensagem.setGeometry(QtCore.QRect(180, 290, 261, 31))
+        self.Mensagem.setGeometry(QtCore.QRect(120, 290, 500, 31))
         self.Mensagem.setObjectName("Mensagem")
         self.spinBox = QtWidgets.QSpinBox(Dialog)
         self.spinBox.setGeometry(QtCore.QRect(52, 390, 56, 24))
         self.spinBox.setMaximum(3)
         self.spinBox.setObjectName("spinBox")
         self.label = QtWidgets.QLabel(Dialog)
-        self.label.setGeometry(QtCore.QRect(40, 370, 81, 20))
+        self.label.setGeometry(QtCore.QRect(40, 370, 101, 20))
         self.label.setObjectName("label")
         # Events
         self.B00.clicked.connect(self.ButtonB00)
@@ -141,7 +141,7 @@ class Ui_Dialog(object):
         self.ButtonStart.setText(_translate("Dialog", "Reiniciar"))
         self.ButtonSecond.setText(_translate("Dialog", "Começar Depois"))
         self.Title.setText(_translate("Dialog", "JOGO DA VELHA"))
-        self.Mensagem.setText(_translate("Dialog", "Vamos Jogar,se você quiser começar marque sua posição"))
+        self.Mensagem.setText(_translate("Dialog", "Vamos Jogar, se você quiser começar marque sua posição"))
         self.label.setText(_translate("Dialog", "Profundidade"))
 
     # Functions
@@ -197,6 +197,8 @@ class Ui_Dialog(object):
 
     def Play(self):
         table_before = self.takeBoard()
+        level = self.spinBox.text()
+        print(level)
         game = Game()
         flag, msg = game.alguem_ganhou(table_before)
         if(flag):
@@ -204,7 +206,7 @@ class Ui_Dialog(object):
             self.play_mark = False
         else:
             self.Mensagem.setText("Minha Vez")
-            line, colm = game.my_time(table_before)
+            line, colm = game.my_time(table_before, level)
             self.makeBoard(line, colm, "X")
             table_before = self.takeBoard()
             flag, msg = game.alguem_ganhou(table_before)

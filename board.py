@@ -3,7 +3,11 @@ from var_dump import var_dump
 
 
 class Board:
-    tabela = [[None, None, None], [None, None, None], [None, None, None]]
+    tabela = [
+              [None, None, None], 
+              [None, None, None], 
+              [None, None, None]
+             ]
     size = 3
 
     def __init__(self, table):
@@ -85,6 +89,7 @@ class Board:
             count2 = count2 + 1
         
         return count2-count
+        
     def where_i_win(self):
         auxTable = copy.deepcopy(self.tabela[:])
         for i in range(self.size):
@@ -225,6 +230,30 @@ class Board:
                 if auxTable[i][j] == None:
                     return False
         return True
+    
+    def jogada_1(self):
+        auxTable = copy.deepcopy(self.tabela[:])
+        # Diagonal Principal
+        if (auxTable[0][0] == "O" and auxTable[1][1] == "X"  and auxTable[2][2] == "O"):
+            if(auxTable[1][0] == None):    
+                return [1, 0]
+            if(auxTable[0][1] == None):    
+                return [0, 1]
+            if(auxTable[2][1] == None):    
+                return [2, 1]
+            if(auxTable[1][2] == None):    
+                return [1, 2]
+        # Diagonal Secundaria
+        if (auxTable[0][2] == "O" and auxTable[1][1] == "X" and auxTable[2][0] == "O" ):
+            if(auxTable[1][0] == None):    
+                return [1, 0]
+            if(auxTable[0][1] == None):    
+                return [0, 1]
+            if(auxTable[2][1] == None):    
+                return [2, 1]
+            if(auxTable[1][2] == None):    
+                return [1, 2]
+        return False
 
 
 # returned false means odd,but returned true means even
