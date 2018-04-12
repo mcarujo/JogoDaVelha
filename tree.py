@@ -31,11 +31,11 @@ class Tree:
                             False)
 
     def wich_one_is_the_best(self):
-        auxNode = [ ]
+        auxNode = None
 
         Weight = -100
         for val in self.root.nextNode:
-            if(Weight > val.weight):
+            if(Weight < val.weight):
                 Weight = val.weight
                 auxNode = val
 
@@ -43,7 +43,7 @@ class Tree:
             for x in range(len(self.root.nextNode)):
                 Weight = -100
                 for val in self.root.nextNode[x].nextNode:
-                    if(Weight > val.weight):
+                    if(Weight < val.weight):
                         Weight = self.root.nextNode[x].weight
                         auxNode = self.root.nextNode[x]
 
@@ -52,7 +52,7 @@ class Tree:
                 for y in range(len(self.root.nextNode[x].nextNode)):
                     Weight = -100
                     for val in self.root.nextNode[x].nextNode[y].nextNode:
-                        if(Weight > val.weight):
+                        if(Weight < val.weight):
                             Weight = self.root.nextNode[x].weight
                             auxNode = self.root.nextNode[x]
                         
@@ -62,7 +62,7 @@ class Tree:
                     for z in range(len(self.root.nextNode[x].nextNode[y].nextNode)):
                         Weight = -100
                         for val in self.root.nextNode[x].nextNode[y].nextNode[z].nextNode:
-                            if(Weight > val.weight):
+                            if(Weight < val.weight):
                                 Weight = self.root.nextNode[x].weight
                                 auxNode = self.root.nextNode[x]
         auxNode.nextNode = None
